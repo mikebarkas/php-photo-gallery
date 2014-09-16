@@ -4,9 +4,14 @@ require_once('config.php');
 class MySQLDatabase {
 
   private $connection;
+  private $magic_quotes_active;
+  private $real_escape_string_exists;
+  public $last_query;
 
   function __construct () {
     $this->open_connection();
+    $this->magic_quotes_active = get_magic_quotes_gpc();
+    $this->real_escape_string_exists = function_exists('mysql_real_escape_string');    
   }
 
   // Open connection.
@@ -34,6 +39,7 @@ class MySQLDatabase {
 
   // SQL Query.
   public function query ($sql) {
+    $this->last_query = $sql; 
     $result = mysql_query($sql, $this->connection);
     $this->confirm_query($result);
     return $result;
@@ -48,16 +54,13 @@ class MySQLDatabase {
 
   // Escape input.
   public function escape_value ($value) {
-    $magic_quotes_active = get_magic_quotes_gpc();
-    $new_enough_php = function_exists('mysql_real_escape_string');
-
-    if ($new_enough_php) {
-      if ($magic_quotes_active) {
+    if ($this->real_escape_string_exists) {
+      if ($this->magic_quotes_active) {
         $value = stripslashes($value);
       }
       $value = mysql_real_escape_string($value);
     } else {
-      if (!$magic_quotes_active) {
+      if (!$this->magic_quotes_active) {
         $value = addslashes($value);
       }
     }
