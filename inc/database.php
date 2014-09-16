@@ -31,6 +31,22 @@ class MySQLDatabase {
       unset($this->connection);
     }
   }
+
+  // SQL Query.
+  public function query ($sql) {
+    $result = mysql_query($sql, $this->connection);
+    $this->confirm_query;
+    return $result;
+  }
+
+  // Confirm query.
+  private function confirm_query ($result) {
+    if (!$result) {
+      die('Databse query failed: ' . mysql_error());
+    }
+  }
+
+  // need mysql_prep.
 }
 
 
