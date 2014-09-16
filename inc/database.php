@@ -64,6 +64,23 @@ class MySQLDatabase {
 
     return $value;
   }
+
+  // Database methods.
+  public function fetch_array ($result_set) {
+    return mysql_fetch_array($result_set);
+  }
+
+  public function num_rows ($result_set) {
+    return mysql_num_rows($result);
+  }
+
+  public function insert_id ($result_set) {
+    return mysql_insert_id($this->connection);
+  }
+
+  public function affected_rows ($result_set) {
+    return mysql_affected_rows($this->connection);
+  }
 }
 
 
