@@ -1,13 +1,18 @@
 <?php
 require_once('../inc/database.php');
+require_once('../inc/user.php');
 
-$sql = "select * from users where id = 1";
-$result_set = $db->query($sql);
-$found_user = $db->fetch_array($result_set);
+echo "<hr/>";
 
-echo $found_user['username'];
-echo "<br/>";
-echo $found_user['id'];
-echo "<br/>";
-echo $found_user['first_name'] . ' ' . $found_user['last_name'];
+$user = User::find_by_id(1);
+echo $user->full_name();
+
+echo "<hr/>";
+
+$users = User::find_all();
+foreach ($users as $user) {
+  echo 'User: ' . $user->username . '<br/>';
+  echo 'Name: ' . $user->full_name() . '<br/>';
+}
+
 ?>
