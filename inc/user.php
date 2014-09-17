@@ -34,6 +34,21 @@ class User {
     return $object_array;
   }
 
+  // Authenticate user log in.
+  public static function authenticate($username = '', $password = '') {
+    global $db;
+    $username = $db->escape_value($username);
+    $password = $db->escape_value($password);
+
+    $sql = "SELECT * FROM users ";
+    $sql .= "WHERE username = '{$username}' ";
+    $sql .= "AND password = '{$password}' ";
+    $sql .= "LIMIT 1";
+
+    $result_array = self::find_by_sql($sql);
+    return !empty($result_array) ? array_shift($result_array) : false;
+  }
+
   // Create full name;
   public function full_name () {
     if (isset($this->first_name) && isset($this->last_name)) {
