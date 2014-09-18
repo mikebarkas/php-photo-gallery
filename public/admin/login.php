@@ -1,8 +1,6 @@
 <?php
-require_once('../../inc/functions.php');
-require_once('../../inc/session.php');
-require_once('../../inc/database.php');
-require_once('../../inc/user.php');
+require_once('../../inc/initialize.php');
+
 
 if ($session->is_logged_in()) {
   redirect_to('index.php');

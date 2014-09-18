@@ -1,7 +1,5 @@
 <?php
-require_once('../inc/functions.php');
-require_once('../inc/database.php');
-require_once('../inc/user.php');
+require_once('../inc/initialize.php');
 
 echo "<hr/>";
 
