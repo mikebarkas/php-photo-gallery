@@ -1,6 +1,7 @@
 <?php
 require_once('../inc/initialize.php');
 
+
 echo "<hr/>";
 
 $user = User::find_by_id(1);
@@ -15,3 +16,9 @@ foreach ($users as $user) {
 }
 
 ?>
+<?php include('layout/header.php'); ?>
+
+<h1>Photo Gallery</h1>
+<p>Index page.</p>
+
+<?php include('layout/footer.php'); ?>

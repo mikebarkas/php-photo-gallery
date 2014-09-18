@@ -27,13 +27,9 @@ if (isset($_POST['submit'])) {
 }
 ?>
 
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Login</title>
-</head>
-<body>
+<?php include('../layout/admin_header.php'); ?>
 
+<h2>Log In</h2>
 <form action"login.php" method="post">
   Username:
   <input type="text" name="username" maxlength="30" value="<?php echo htmlentities($username); ?>" /><br/>
@@ -43,6 +39,4 @@ if (isset($_POST['submit'])) {
 
 </form>
 
-</body>
-</html>
-<?php if (isset($db)) { $db->close_connection(); } ?>
+<?php include('../layout/admin_footer.php'); ?>

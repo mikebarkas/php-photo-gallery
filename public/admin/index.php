@@ -3,15 +3,9 @@ require_once('../../inc/functions.php');
 require_once('../../inc/session.php');
 if (!$session->is_logged_in()) {redirect_to('login.php');}
 ?>
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Photo Gallery</title>
-</head>
-<body>
-
-<h1>Photo Gallery</h1>
+<?php include('../layout/admin_header.php'); ?>
 
 
-</body>
-</html>
+<h1>Photo Gallery Admin</h1>
+
+<?php include('../layout/admin_footer.php'); ?>
