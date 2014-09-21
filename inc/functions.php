@@ -37,4 +37,21 @@ function strip_zeros_from_date($marked_string = '') {
   return $clean_string;
 }
 
+// Create login action log.
+function log_action($action, $message = '') {
+  $logfile = '../../logs/log.txt';
+  $new = file_exists($logfile) ? false : true;
+  if ($handle = fopen($logfile, 'a')) {
+    if (is_writable($logfile)) {
+      $logtime = strftime('%m-%d-%Y %H:%M', time());
+      $content = "{$logtime} | {$action} : {$message}\n";
+      fwrite($handle, $content);
+      fclose($handle);
+      if ($new) { chmod($logfile, 0755); }
+    } else {
+      echo 'Could not open log file writing.';
+    }
+  }
+}
+
 ?>

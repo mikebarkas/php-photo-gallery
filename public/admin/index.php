@@ -6,6 +6,6 @@ if (!$session->is_logged_in()) {redirect_to('login.php');}
 <?php include('../layout/admin_header.php'); ?>
 
 
-<h1>Photo Gallery Admin</h1>
+<h2>Admin Index</h2>
 
 <?php include('../layout/admin_footer.php'); ?>
