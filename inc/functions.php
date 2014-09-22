@@ -44,7 +44,7 @@ function strip_zeros_from_date($marked_string = '') {
 
 // Create login action log.
 function log_action($action, $message = '') {
-  $logfile = '../../logs/log.txt';
+  $logfile = SITE_ROOT.DS.'logs/log.txt';
   $new = file_exists($logfile) ? false : true;
   if ($handle = fopen($logfile, 'a')) {
     if (is_writable($logfile)) {
