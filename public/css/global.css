@@ -1,0 +1,27 @@
+body {
+  font-family: Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+#header {
+  background: #dedede;
+  border-bottom: 1px solid #cccccc;
+}
+
+#content {
+  min-height: 300px;
+}
+
+#footer {
+  background: #fafafa;
+  border-top: 1px solid #cccccc;
+}
+
+.inner {
+  padding: 20px;
+}
+
+h1,h2 {
+  color: #333333;
+}
