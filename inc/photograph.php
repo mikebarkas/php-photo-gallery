@@ -62,12 +62,12 @@ class Photograph {
       }
 
       // Need filename and temp location.
-      if (empty($this->filename) || empty($ths->temp_path)) {
+      if (empty($this->filename) || empty($this->temp_path)) {
         $this->errors[] = "File location was not available.";
         return false;
       }
 
-      $target_path = "../public/images/" . $this->filename;
+      $target_path = "../images/" . $this->filename;
 
       // Check if file exists.
       if (file_exists($target_path)) {
