@@ -23,4 +23,5 @@ require_once('database.php');
 
 // Load user class.
 require_once('user.php');
+require_once('photograph.php');
 ?>
