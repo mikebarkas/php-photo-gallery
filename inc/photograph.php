@@ -1,7 +1,7 @@
 <?php
 require_once('database.php');
 
-class Photograph extends DatabaseObject {
+class Photograph {
 
   protected static $table_name = 'photographs';
   protected static $db_fields = array('id', 'filename', 'type', 'caption');

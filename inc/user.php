@@ -4,6 +4,8 @@ require_once('database.php');
 
 class User {
 
+  protected static $table_name = 'users';
+  protected static $db_fields = array('id', 'username', 'password', 'first_name', 'last_name');
   public $id;
   public $username;
   public $password;
@@ -70,8 +72,27 @@ class User {
   }
 
   private function has_attribute ($attribute) {
-    $object_vars = get_object_vars($this);
+    $object_vars = $this->attributes();
     return array_key_exists($attribute, $object_vars);
+  }
+
+  protected function attributes() {
+    $attributes = array();
+    foreach (self::$db_fields as $field) {
+      if (property_exists($this, $field)) {
+        $attributes[$field] = $this->$field;
+      }
+    }
+    return $attributes;
+  }
+
+  protected function sanitized_attributes() {
+    global $db;
+    $clean_attributes = array();
+    foreach ($this->attributes() as $key => $value) {
+      $clean_attributes[$key] = $db->escape_value($value);
+    }
+    return $clean_attributes;
   }
 
   public function save() {
@@ -80,13 +101,12 @@ class User {
 
   public function create() {
     global $db;
-    $sql = "INSERT INTO users (";
-    $sql .= "username, password, first_name, last_name";
+    $attributes = $this->sanitized_attributes();
+    $sql = "INSERT INTO " . self::$table_name . " (";
+    $sql .= join(", ", array_keys($attributes));
     $sql .= ") VALUES ('";
-    $sql .= $db->escape_value($this->username) . "', '";
-    $sql .= $db->escape_value($this->password) . "', '";
-    $sql .= $db->escape_value($this->first_name) . "', '";
-    $sql .= $db->escape_value($this->last_name) . "')";
+    $sql .= join("', '", array_values($attributes));
+    $sql .= "')";
     if ($db->query($sql)) {
       $this->id = $db->insert_id();
       return true;
@@ -97,19 +117,21 @@ class User {
 
   public function update() {
     global $db;
-    $sql = "UPDATE users SET ";
-    $sql .= "username='" . $db->escape_value($this->username) . "', ";
-    $sql .= "password='" . $db->escape_value($this->password) . "', ";
-    $sql .= "first_name='" . $db->escape_value($this->first_name) . "', ";
-    $sql .= "last_name='" . $db->escape_value($this->last_name) . "' ";
-    $sql .= "WHERE id=" . $db->escape_value($this->id);
+    $attributes = $this->sanitized_attributes();
+    $attribute_pairs = array();
+    foreach ($attributes as $key => $value) {
+      $attribute_pairs[] = "{$key}='{$value}'";
+    }
+    $sql = "UPDATE " . self::$table_name . " SET ";
+    $sql .= join(", ", $attribute_pairs);
+    $sql .= " WHERE id=" . $db->escape_value($this->id);
     $db->query($sql);
     return ($db->affected_rows()==1 ) ? true : false;
   }
 
   public function delete() {
     global $db;
-    $sql = "DELETE FROM users ";
+    $sql = "DELETE FROM " . self::$table_name . " ";
     $sql .= "WHERE id=" . $db->escape_value($this->id);
     $sql .= " LIMIT 1";
     $db->query($sql);
