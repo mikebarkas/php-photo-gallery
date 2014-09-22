@@ -73,6 +73,48 @@ class User {
     $object_vars = get_object_vars($this);
     return array_key_exists($attribute, $object_vars);
   }
+
+  public function save() {
+    return isset($this->id) ? $this->update() : $this->create();
+  }
+
+  public function create() {
+    global $db;
+    $sql = "INSERT INTO users (";
+    $sql .= "username, password, first_name, last_name";
+    $sql .= ") VALUES ('";
+    $sql .= $db->escape_value($this->username) . "', '";
+    $sql .= $db->escape_value($this->password) . "', '";
+    $sql .= $db->escape_value($this->first_name) . "', '";
+    $sql .= $db->escape_value($this->last_name) . "')";
+    if ($db->query($sql)) {
+      $this->id = $db->insert_id();
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  public function update() {
+    global $db;
+    $sql = "UPDATE users SET ";
+    $sql .= "username='" . $db->escape_value($this->username) . "', ";
+    $sql .= "password='" . $db->escape_value($this->password) . "', ";
+    $sql .= "first_name='" . $db->escape_value($this->first_name) . "', ";
+    $sql .= "last_name='" . $db->escape_value($this->last_name) . "' ";
+    $sql .= "WHERE id=" . $db->escape_value($this->id);
+    $db->query($sql);
+    return ($db->affected_rows()==1 ) ? true : false;
+  }
+
+  public function delete() {
+    global $db;
+    $sql = "DELETE FROM users ";
+    $sql .= "WHERE id=" . $db->escape_value($this->id);
+    $sql .= " LIMIT 1";
+    $db->query($sql);
+    return ($db->affected_rows()==1 ) ? true : false;
+  }
 }
 
 
