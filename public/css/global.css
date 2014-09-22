@@ -25,3 +25,18 @@ body {
 h1,h2 {
   color: #333333;
 }
+
+/*
+ * Log file.
+ */
+
+ul.log-entries {
+  list-style: none inside none;
+  width: 80%;
+}
+
+ul.log-entries li {
+  padding: 5px 0 5px 10px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #dedede;
+}
