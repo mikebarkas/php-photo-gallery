@@ -2,7 +2,7 @@
 require_once('../inc/initialize.php');
 ?>
 
-<?php include('layout/header.php'); ?>
+<?php include_layout_template('header.php'); ?>
 
 <h2>Photo Gallery</h2>
 <p>Index page.</p>
@@ -24,4 +24,4 @@ foreach ($users as $user) {
 ?>
 </p>
 
-<?php include('layout/footer.php'); ?>
+<?php include_layout_template('footer.php'); ?>

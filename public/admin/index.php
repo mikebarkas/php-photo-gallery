@@ -1,11 +1,10 @@
 <?php
-require_once('../../inc/functions.php');
-require_once('../../inc/session.php');
+require_once('../../inc/initialize.php');
 if (!$session->is_logged_in()) {redirect_to('login.php');}
 ?>
-<?php include('../layout/admin_header.php'); ?>
+<?php include_layout_template('admin_header.php'); ?>
 
 
 <h2>Admin Index</h2>
 
-<?php include('../layout/admin_footer.php'); ?>
+<?php include_layout_template('admin_footer.php'); ?>

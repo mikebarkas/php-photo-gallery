@@ -28,6 +28,11 @@ function output_message($message = '') {
   }
 }
 
+// Include template layouts.
+function include_layout_template($template="") {
+  include(SITE_ROOT.DS.'public'.DS.'layout'.DS.$template);
+}
+
 // Remove leading zeros from dates.
 function strip_zeros_from_date($marked_string = '') {
   // Remove marked zeros.

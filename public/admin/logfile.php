@@ -14,7 +14,7 @@ if ($_GET['clear'] == true) {
 }
 ?>
 
-<?php include('../layout/admin_header.php'); ?>
+<?php include_layout_template('admin_header.php'); ?>
 
 <h2>Log File</h2>
 <p><a class="button" href="logfile.php?clear=true">Clear Logs</a></p>
@@ -34,4 +34,4 @@ if (file_exists($logfile) && is_readable($logfile) && $handle = fopen($logfile, 
 }
 ?>
 
-<?php include('../layout/admin_footer.php'); ?>
+<?php include_layout_template('admin_footer.php'); ?>
