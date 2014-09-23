@@ -25,6 +25,26 @@ body {
 h1,h2 {
   color: #333333;
 }
+/*
+ * Menu.
+ */
+
+ul.menu {
+  list-style: none inside none;
+}
+
+ul.menu li {
+  display: inline-block;
+  margin-right: 10px;
+}
+
+ul.menu li a {
+  padding: 3px 10px;
+  border: 1px solid #ededed;
+  background: #fafafa;
+  color: #333333;
+  text-decoration: none;
+}
 
 /*
  * Log file.

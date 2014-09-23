@@ -10,6 +10,8 @@
       <h1>Photo Gallery</h1>
     </div>
   </div>
-
+  <div id="admin-nav">
+  <?php include_layout_template('admin_nav.php'); ?>
+  </div>
   <div id="content">
     <div class="inner">
