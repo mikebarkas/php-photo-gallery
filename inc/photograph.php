@@ -89,15 +89,31 @@ class Photograph {
     }
   }
 
+  public function image_path() {
+    return $this->upload_dir.DS.$this->filename;
+  }
+
+  public function size_as_text() {
+    if ($this->size < 1024) {
+      return "{$this->size} bytes";
+    } elseif ($this->size < 1048576) {
+      $size_kb = round($this->size/1024);
+      return "{$size_kb} KB";
+    } else {
+      $size_mb = round($this->size/1048576, 1);
+      return "{$size_mb} MB";
+    }
+  }
+
   // Find all.
   public static function find_all () {
-    return self::find_by_sql("SELECT * FROM users");
+    return self::find_by_sql("SELECT * FROM " . self::$table_name);
   }
 
   // Find one.
   public static function find_by_id ($id=0) {
     global $db;
-    $result_array = self::find_by_sql("SELECT * FROM users WHERE id={$id} LIMIT 1");
+    $result_array = self::find_by_sql("SELECT * FROM " . self::$table_name . " WHERE id={$id} LIMIT 1");
     return !empty($result_array) ? array_shift($result_array) : false;
   }
 
