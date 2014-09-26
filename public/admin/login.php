@@ -31,10 +31,10 @@ if (isset($_POST['submit'])) {
 
 <h2>Log In</h2>
 <form action"login.php" method="post">
-  Username:
-  <input type="text" name="username" maxlength="30" value="<?php echo htmlentities($username); ?>" /><br/>
-  Password:
-  <input type="password" name="password" maxlength="30" value="<?php echo htmlentities($password); ?>" /><br/>
+  <p>Username:
+  <input type="text" name="username" maxlength="30" value="<?php echo htmlentities($username); ?>" /></p>
+  <p>Password:
+  <input type="password" name="password" maxlength="30" value="<?php echo htmlentities($password); ?>" /></p>
   <input type="submit" name="submit" value="Login" />
 
 </form>
