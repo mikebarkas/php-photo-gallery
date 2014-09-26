@@ -31,7 +31,7 @@ class Session {
 
   public function message($msg="") {
     if (!empty($msg)) {
-      // Set meaage.
+      // Set message.
       $_SESSION['message'] = $msg;
     } else {
       // Get message.

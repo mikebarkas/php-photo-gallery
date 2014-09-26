@@ -8,14 +8,15 @@ $photos = Photograph::find_all();
 
 <?php include_layout_template('admin_header.php'); ?>
 <h2>Photographs</h2>
-<?php echo output_message($message); ?>
+<p><?php echo output_message($message); ?></p>
 <table>
   <tr>
     <th>Image</th>
     <th>Filename</th>
     <th>Caption</th>
     <th>Size</th>
-    <th>type</th>
+    <th>Type</th>
+    <th></th>
   </tr>
 <?php foreach ($photos as $photo) : ?>
   
@@ -25,6 +26,7 @@ $photos = Photograph::find_all();
     <td><?php echo $photo->caption; ?></td>
     <td><?php echo $photo->size_as_text(); ?></td>
     <td><?php echo $photo->type; ?></td>
+    <td><a href="delete_photo.php?id=<?php echo $photo->id;?>">Delete</a></td>
   </tr>
 <?php endforeach; ?>
 

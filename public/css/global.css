@@ -25,6 +25,18 @@ body {
 h1,h2 {
   color: #333333;
 }
+
+.message {
+  background: #ffffcc;
+  border: 1px solid #dedede;
+  padding: 10px;
+  margin: 5px 0;
+}
+
+.deleted-file-name {
+  color: #ff6600;
+}
+
 /*
  * Menu.
  */
