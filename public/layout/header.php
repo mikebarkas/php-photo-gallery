@@ -10,6 +10,8 @@
       <h1>Photo Gallery</h1>
     </div>
   </div>
-
+  <div id="nav">
+  <?php include_layout_template('nav.php'); ?>
+  </div>
   <div id="content">
     <div class="inner">
