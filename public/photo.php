@@ -19,4 +19,6 @@ if (!$photo) {
   <p class="caption"><?php echo $photo->caption;?></p>
 </div>
 
+<!-- list comments -->
+
 <?php include_layout_template('footer.php'); ?>
